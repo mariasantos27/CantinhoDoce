@@ -19,7 +19,7 @@ class CreateUsersSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@cantinhodoce.com',
                 'is_admin' => '1',
-                'password' => bcrypt('123456'),
+                'password' => bcrypt('12345678'),
             ],
             [
                 'name' => 'User',
