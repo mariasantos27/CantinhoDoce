@@ -25,6 +25,9 @@ Route::get('/products', function () {
 Route::get('/productview', function () {
     return view('productview');
 });
+Route::get('/DetalhesEntrega', function () {
+    return view('DetalhesEntrega');
+});
 
 
 Auth::routes();
