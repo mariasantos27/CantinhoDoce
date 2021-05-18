@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -252,63 +253,7 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-toggleable-md navbar-expand-sm sticky-top py-0" style="background-color: #EFF4EE;">
-
-        <!-- Logo -->
-        <a class="navbar-brand" href="/">
-            <img src="storage/images/logo.png" alt="logo" style="width: 50%;">
-
-        </a>
-
-        <!-- Caixa de pesquisa -->
-
-        <div class="search-container">
-            <form action="#">
-                <input type="text" placeholder="O que procura?" name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-
-
-
-        <!-- Login e Registo -->
-        <ul class="navbar-nav justify-content-right">
-            @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                @auth
-                <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Página Inicial</a>
-                @else
-                <a href="{{ route('login') }}" class="px-2 text-sm" style="color: black;"><b>Login</b></a>
-
-                @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="ml-2 px-4 text-sm" style="color: black;"><b>Registo</a></b>
-                @endif
-                @endauth
-            </div>
-            @endif
-        </ul>
-
-    <!--MENU PRINCIPAL-->
-    </nav>
-    <div class="container-fluid text-center menu-item position-relative">
-        <div class="row">
-            <div class="col border border-3 py-2">
-                <a href="/">Início</a>
-            </div>
-            <div class="col border border-3 py-2">
-                <a href="products" class="active">Produtos</a>
-            </div>
-            <div class="col border border-3 py-2">
-                <a href="#about">Sobre Nós</a>
-            </div>
-            <div class="col border border-3 py-2">
-                <a href="#about">Contacto</a>
-            </div>
-        </div>
-    </div>
-
-
+    @include('partials.publicmenu')
     <div class="container-fluid">
         <div class="row m-5 p-5 " style="background-color:#E0E0E0 ">
             <div class="col-md-4 mb-3 opcoes OpcoesActive" id="opcao1" >
@@ -343,14 +288,6 @@
                     <input class="form-check-input" type="radio"  id="condeixa" name="metodoentrega"/>
                     <label class="form-check-label" for="condeixa">Quero receber a minha encomenda na Pastelaria Cantinho Doce - Condeixa </label>
                 </div>                
-                
-
-                <div class="row mt-5 p-3">
-                    <div class="col-md-12" style="color:black; border-top: 3px solid #E0E0E0;">
-                        <button type="button" id="proximoDet" class="btn proximo mt-3 mr-3">Próximo</button>
-                        <a href="/"><button type="button" class="btn verMaisCateg mt-3">Cancelar</button></a>
-                    </div>
-                </div>
             </div>
 
             <div class="col-md-5" >
@@ -371,8 +308,14 @@
                         <div class="col-md-8"><input class="mt-3" type="text" style="min-width: 100%;" name="Endereco"></div>
                     </div>
                 </div>
-            </div>
 
+                <div class="row mt-2 p-3">
+                    <div class="col-md-12" style="color:black; border-top: 3px solid #E0E0E0;">
+                        <button type="button" id="proximoDet" class="btn float-right proximo mt-3 ml-3">Próximo</button>
+                        <a href="/"><button type="button" class="btn float-right verMaisCateg mt-3">Cancelar</button></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -390,15 +333,10 @@
                             <div class="col-md-12"><p>Preço <span>€</span></p></div>
                         </div>
                     </div>
-                    <div class="col-md-5">Input de Números</div>
+                    <div class="col-md-5"><input  type="number" min="0"> unidades</input></div>
                 </div>
 
-                <div class="row mt-5 p-3">
-                    <div class="col-md-12" style="color:black; border-top: 3px solid #E0E0E0;">
-                        <button type="button" id="proximoCar" class="btn proximo mt-3 mr-3">Próximo</button>
-                        <a href="/"><button type="button" class="btn verMaisCateg mt-3">Cancelar</button></a>
-                    </div>
-                </div>
+                
 
 
             </div>
@@ -419,34 +357,60 @@
                     <div class="col-md-6 mt-4"><p><b>PREÇO</b> <span>€</span></p></div>
                 </div>
 
+                <div class="row mt-2">
+                    <div class="col-md-12" style="color:black; border-top: 3px solid #E0E0E0;">
+                        <button type="button" id="proximoCar" class="btn proximo float-right mt-3 ml-3">Próximo</button>
+                        <a href="/"><button type="button" class="btn verMaisCateg float-right mt-3 ml-3">Cancelar</button></a>
+                        <button type="button" id="anteriorCar" class="btn verMaisCateg mt-3">Anterior</button>
+
+                    </div>
+                </div>
+
             </div>
+
+            
+
         </div>
     </div>
 
     <div id="opPagamento" style="display: none">
         <div class="row m-5">
-            <div class="col-md-7" >
+            <div class="col-md-12" >
                 <h5 class="p-3" style="color:black; border-bottom: 3px solid #E0E0E0; font-weight: bold;">Método de pagamento</h5>
 
-                <div class="form-check mt-5">
-                    <input class="form-check-input" type="radio" id="pagBalcao" name="metodo" />
-                    <label class="form-check-label" for="pagBalcao">Pagamento ao balcão </label>
-                </div>
+                    <div class="row p-3 text-center">
+                        <div class="col-md-3">IMAGEM 1</div>
+                        <div class="col-md-3">IMAGEM 2</div>
+                        <div class="col-md-3">IMAGEM 3</div>
+                        <div class="col-md-3" id="pagBalcaoImagem">IMAGEM 4</div>
+                    </div>
 
-                <div class="form-check mt-3">
-                    <input class="form-check-input" type="radio"  id="multibanco" name="metodo"/>
-                    <label class="form-check-label" for="multibanco">Multibanco </label>
-                </div>
+                    <div class="row p-3 text-center">
+                        <div class="col-md-3">
+                            <input class="form-check-input" type="radio"  id="multibanco" name="metodo"/>
+                            <label class="form-check-label" for="multibanco">Multibanco </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-check-input" type="radio"  id="mbway" name="metodo"/>
+                            <label class="form-check-label" for="mbway">MB WAY </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-check-input" type="radio"  id="cartaoCred" name="metodo"/>
+                            <label class="form-check-label" for="cartaoCred">Cartão de Crédito</label>
+                        </div>
+                        <div class="col-md-3" id="pagBalcao">
+                            <input class="form-check-input" type="radio" name="metodo" />
+                            <label class="form-check-label" for="pagBalcao">Pagamento ao balcão </label>
+                        </div>
+                    </div>
+            </div>
+        </div>
 
-                <div class="form-check mt-3">
-                    <input class="form-check-input" type="radio"  id="mbway" name="metodo"/>
-                    <label class="form-check-label" for="mbway">MB WAY </label>
-                </div>
-
-                <div class="form-check mt-3">
-                    <input class="form-check-input" type="radio"  id="cartaoCred" name="metodo"/>
-                    <label class="form-check-label" for="cartaoCred">Cartão de Crédito</label>
-                </div>                    
+        <div class="row m-5 p-3">
+            <div class="col-md-12" style="border-top: 3px solid #E0E0E0;">
+                <button type="button" id="anteriorOP" class="btn verMaisCateg mt-3">Anterior</button>
+                <button type="button" id="proximoCar" class="btn proximo float-right mt-3 ml-3">Confirmar Encomenda</button>
+                <a href="/"><button type="button" class="btn verMaisCateg float-right mt-3 ml-3">Cancelar</button></a>
             </div>
         </div>
     </div>
@@ -500,24 +464,54 @@
         detEntrega.style.display='none';
         meuCarrinho.style.display='none';
         opPagamento.style.display='block';
+        opcao3.classList.add('OpcoesActive');
+        opcao2.classList.remove('OpcoesActive');
+        opcao1.classList.remove('OpcoesActive');
     })   
 
     document.getElementById('proximoDet').addEventListener("click",function(){
         detEntrega.style.display='none';
         meuCarrinho.style.display='block';
         opPagamento.style.display='none';
+        opcao2.classList.add('OpcoesActive');
+        opcao1.classList.remove('OpcoesActive');
+        opcao3.classList.remove('OpcoesActive');
     })   
+
+    document.getElementById('anteriorCar').addEventListener("click",function(){
+        detEntrega.style.display='block';
+        meuCarrinho.style.display='none';
+        opPagamento.style.display='none';
+        opcao1.classList.add('OpcoesActive');
+        opcao2.classList.remove('OpcoesActive');
+        opcao3.classList.remove('OpcoesActive');
+    }) 
+
+    document.getElementById('anteriorOP').addEventListener("click",function(){
+        detEntrega.style.display='none';
+        meuCarrinho.style.display='block';
+        opPagamento.style.display='none';
+        opcao2.classList.add('OpcoesActive');
+        opcao1.classList.remove('OpcoesActive');
+        opcao3.classList.remove('OpcoesActive');
+    })    
 
     document.getElementById('casa').addEventListener("click",function(){
         Endereco.style.display='block';
+        document.getElementById('pagBalcao').style.display='none';
+        document.getElementById('pagBalcaoImagem').style.display='none';
     }) 
 
     document.getElementById('ega').addEventListener("click",function(){
         Endereco.style.display='none';
+        document.getElementById('pagBalcao').style.display='block';
+        document.getElementById('pagBalcaoImagem').style.display='block';
     })   
 
     document.getElementById('condeixa').addEventListener("click",function(){
         Endereco.style.display='none';
+        document.getElementById('pagBalcao').style.display='block';
+        document.getElementById('pagBalcaoImagem').style.display='block';
     })     
 
 
@@ -525,3 +519,5 @@
 </script>
 
 </html>
+
+

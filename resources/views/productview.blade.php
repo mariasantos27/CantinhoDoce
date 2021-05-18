@@ -225,61 +225,7 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-toggleable-md navbar-expand-sm sticky-top py-0" style="background-color: #EFF4EE;">
-
-        <!-- Logo -->
-        <a class="navbar-brand" href="/">
-            <img src="storage/images/logo.png" alt="logo" style="width: 50%;">
-
-        </a>
-
-        <!-- Caixa de pesquisa -->
-
-        <div class="search-container">
-            <form action="#">
-                <input type="text" placeholder="O que procura?" name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-
-
-
-        <!-- Login e Registo -->
-        <ul class="navbar-nav justify-content-right">
-            @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                @auth
-                <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Página Inicial</a>
-                @else
-                <a href="{{ route('login') }}" class="px-2 text-sm" style="color: black;"><b>Login</b></a>
-
-                @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="ml-2 px-4 text-sm" style="color: black;"><b>Registo</a></b>
-                @endif
-                @endauth
-            </div>
-            @endif
-        </ul>
-
-    <!--MENU PRINCIPAL-->
-    </nav>
-    <div class="container-fluid text-center menu-item position-relative">
-        <div class="row">
-            <div class="col border border-3 py-2">
-                <a href="/">Início</a>
-            </div>
-            <div class="col border border-3 py-2">
-                <a href="products" class="active">Produtos</a>
-            </div>
-            <div class="col border border-3 py-2">
-                <a href="#about">Sobre Nós</a>
-            </div>
-            <div class="col border border-3 py-2">
-                <a href="#about">Contacto</a>
-            </div>
-        </div>
-    </div>
+    @include('partials.publicmenu')
 
     <!-- DIV INICIAL DO PRODUTO-->
     <div class="row mt-5 ml-5 mr-5" style="border-bottom:2px solid #ededed;">
