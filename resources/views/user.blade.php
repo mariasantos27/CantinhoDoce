@@ -335,7 +335,7 @@
                 </div>
                 <div class="col-md-2"></div>
                 <div id="confirmarBotoes" class="col-md-12">
-                     <button id="guardar" data-toggle="modal" data-target="#GuardarModal" type="button" class="btn proximo mt-5 mb-3 float-right mr-5" style="display:none;" >Guardar <i class="fas fa-check"></i> </button>
+                     <button id="guardar" type="button" class="btn proximo mt-5 mb-3 float-right mr-5" style="display:none;" >Guardar <i class="fas fa-check"></i> </button>
                      <button id="cancelar" data-toggle="modal" data-target="#CancelarModal" type="button" class="btn verMaisCateg mt-5 mb-3 float-right mr-5" style="display:none;">Cancelar <i class="fas fa-times"></i></button>
                     
                 </div>
@@ -443,27 +443,47 @@
         window.location.reload(true);
     })
 
+    guardar.addEventListener("click",function(){
+        if(password2.value!==password3.value){
+            window.alert("As passwords não são iguais.");
+        }else{
+            if(password2.value==''){
+                window.alert("A password não pode ser vazia.");
+            }else{
+                $('#GuardarModal').modal('show');
+                } 
+        }
+        
+    })
+
     olho1.addEventListener("click",function(){
         if(password1.type==="password"){
-            password1.type='text';
+            password1.type='text'
+            olho1.classList.toggle('fa-eye-slash');
         }else{
             password1.type="password";
+            olho1.classList.remove('fa-eye-slash');
         }
     })
 
     olho2.addEventListener("click",function(){
         if(password2.type==="password"){
             password2.type='text';
+            olho2.classList.toggle('fa-eye-slash');
         }else{
             password2.type="password";
+            olho2.classList.remove('fa-eye-slash');
         }
     })
 
     olho3.addEventListener("click",function(){
         if(password3.type==="password"){
             password3.type='text';
+            olho3.classList.toggle('fa-eye-slash');
         }else{
             password3.type="password";
+            olho3.classList.remove('fa-eye-slash');
+
         }
     })
 
